@@ -2,7 +2,7 @@
 //  main.m
 //  STScrollBarDemo
 //
-//  Created by 沈兆良 on 16/4/27.
+//  Created by https://github.com/STShenZhaoliang/STScrollBar on 16/4/27.
 //  Copyright © 2016年 沈兆良. All rights reserved.
 //
 
