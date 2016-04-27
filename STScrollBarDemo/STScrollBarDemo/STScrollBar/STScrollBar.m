@@ -14,9 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *labelFront;
 /** 2.后面的文本框 */
 @property (nonatomic, strong) UILabel *labelBack;
-/** 3.内容 */
-@property (nonatomic, strong) NSString *content;
-/** 4.内容的宽度 */
+/** 3.内容的宽度 */
 @property (nonatomic, assign) CGFloat widthContent;
 @end
 NS_ASSUME_NONNULL_END
@@ -54,6 +52,10 @@ NS_ASSUME_NONNULL_END
 
 - (void)setupUI
 {
+    _font = [UIFont systemFontOfSize:17];
+    _colorText = [UIColor whiteColor];
+    _start = YES;
+
     self.backgroundColor = [UIColor blackColor];
     self.clipsToBounds = YES;
     [self addSubview:self.labelFront];
@@ -62,19 +64,27 @@ NS_ASSUME_NONNULL_END
 #pragma mark - --- delegate 视图委托 ---
 
 #pragma mark - --- event response 事件相应 ---
-- (void)start {
-    [UIView transitionWithView:self
-                      duration:self.time
-                       options:UIViewAnimationOptionCurveLinear
-                    animations:^{
-                        self.labelBack.x -= self.widthContent;
-                        self.labelFront.x -= self.widthContent;
-                    } completion:^(BOOL finished) {
-                        self.labelBack.x += self.widthContent;
-                        self.labelFront.x += self.widthContent;
-                        [self start];
-                    }];
+- (void)startAnimation {
+    if (self.width > self.widthContent) {
+        return;
+    }
+
+    if (self.start) {
+        [UIView transitionWithView:self
+                          duration:self.time
+                           options:UIViewAnimationOptionCurveLinear
+                        animations:^{
+                            self.labelBack.x -= self.widthContent;
+                            self.labelFront.x -= self.widthContent;
+                        } completion:^(BOOL finished) {
+                            self.labelBack.x += self.widthContent;
+                            self.labelFront.x += self.widthContent;
+                            [self startAnimation];
+                        }];
+    }
 }
+
+
 #pragma mark - --- private methods 私有方法 ---
 
 #pragma mark - --- setters 属性 ---
@@ -82,15 +92,16 @@ NS_ASSUME_NONNULL_END
 - (void)setText:(NSString *)text
 {
     _text = text;
-    self.content = [text stringByAppendingString:@" "];
-    self.labelFront.text = self.content;
-    self.labelBack.text = self.content;
-    self.time = self.content.length / 5;
+    self.labelFront.text = text;
+    self.labelBack.text = text;
+    self.time = text.length / 5;
     self.widthContent = [self.labelFront sizeThatFits:CGSizeZero].width;
     self.labelFront.frame = CGRectMake(0, 0, self.widthContent, self.height);
     if (self.widthContent > self.width) {
         self.labelBack.frame = CGRectMake(self.widthContent, 0, self.widthContent, self.height);
     }
+
+    [self startAnimation];
 }
 
 - (void)setTime:(NSTimeInterval)time
@@ -99,13 +110,33 @@ NS_ASSUME_NONNULL_END
 }
 
 
+- (void)setFont:(UIFont *)font
+{
+    _font = font;
+    self.labelBack.font = font;
+    self.labelFront.font = font;
+}
+
+- (void)setColorText:(UIColor *)colorText
+{
+    _colorText = colorText;
+    self.labelFront.textColor = colorText;
+    self.labelBack.textColor = colorText;
+}
+
+- (void)setStart:(BOOL)start
+{
+    _start = start;
+    [self startAnimation];
+}
+
 #pragma mark - --- getters 属性 —
 - (UILabel *)labelFront
 {
     if (!_labelFront) {
         _labelFront = [[UILabel alloc]init];
-        _labelFront.textColor = [UIColor redColor];
-        _labelFront.font = [UIFont boldSystemFontOfSize:14];
+        _labelFront.textColor = self.colorText;
+        _labelFront.font = self.font;
     }
     return _labelFront;
 }
@@ -114,8 +145,8 @@ NS_ASSUME_NONNULL_END
 {
     if (!_labelBack) {
         _labelBack = [[UILabel alloc]init];
-        _labelBack.textColor = [UIColor redColor];
-        _labelBack.font = [UIFont boldSystemFontOfSize:14];
+        _labelBack.textColor = self.colorText;
+        _labelBack.font = self.font;
     }
     return _labelBack;
 }
