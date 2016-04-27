@@ -15,6 +15,7 @@
 		67907C2E1CD06C53001E74F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67907C2C1CD06C53001E74F1 /* LaunchScreen.storyboard */; };
 		67907C381CD06C90001E74F1 /* UIView+ST.m in Sources */ = {isa = PBXBuildFile; fileRef = 67907C371CD06C90001E74F1 /* UIView+ST.m */; };
 		67907C3B1CD06CD9001E74F1 /* STScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 67907C3A1CD06CD9001E74F1 /* STScrollBar.m */; };
+		67907C3D1CD07DF4001E74F1 /* picture0.png in Resources */ = {isa = PBXBuildFile; fileRef = 67907C3C1CD07DF4001E74F1 /* picture0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		67907C371CD06C90001E74F1 /* UIView+ST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ST.m"; sourceTree = "<group>"; };
 		67907C391CD06CD9001E74F1 /* STScrollBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScrollBar.h; sourceTree = "<group>"; };
 		67907C3A1CD06CD9001E74F1 /* STScrollBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STScrollBar.m; sourceTree = "<group>"; };
+		67907C3C1CD07DF4001E74F1 /* picture0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				67907C241CD06C53001E74F1 /* ViewController.h */,
 				67907C251CD06C53001E74F1 /* ViewController.m */,
 				67907C271CD06C53001E74F1 /* Main.storyboard */,
+				67907C3C1CD07DF4001E74F1 /* picture0.png */,
 				67907C2A1CD06C53001E74F1 /* Assets.xcassets */,
 				67907C2C1CD06C53001E74F1 /* LaunchScreen.storyboard */,
 				67907C2F1CD06C53001E74F1 /* Info.plist */,
@@ -158,6 +161,7 @@
 				67907C2E1CD06C53001E74F1 /* LaunchScreen.storyboard in Resources */,
 				67907C2B1CD06C53001E74F1 /* Assets.xcassets in Resources */,
 				67907C291CD06C53001E74F1 /* Main.storyboard in Resources */,
+				67907C3D1CD07DF4001E74F1 /* picture0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

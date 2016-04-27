@@ -55,11 +55,23 @@ NS_ASSUME_NONNULL_END
     _font = [UIFont systemFontOfSize:17];
     _colorText = [UIColor whiteColor];
     _start = YES;
-
+    _text = @"";
     self.backgroundColor = [UIColor blackColor];
     self.clipsToBounds = YES;
     [self addSubview:self.labelFront];
     [self addSubview:self.labelBack];
+}
+
+- (void)reloadFrame
+{
+    self.labelFront.text = self.text;
+    self.labelBack.text = self.text;
+    self.time = self.text.length / 5;
+    self.widthContent = [self.labelFront sizeThatFits:CGSizeZero].width;
+    self.labelFront.frame = CGRectMake(0, 0, self.widthContent, self.height);
+    if (self.widthContent > self.width) {
+        self.labelBack.frame = CGRectMake(self.widthContent, 0, self.widthContent, self.height);
+    }
 }
 #pragma mark - --- delegate 视图委托 ---
 
@@ -88,28 +100,6 @@ NS_ASSUME_NONNULL_END
 #pragma mark - --- private methods 私有方法 ---
 
 #pragma mark - --- setters 属性 ---
-
-- (void)setText:(NSString *)text
-{
-    _text = text;
-    self.labelFront.text = text;
-    self.labelBack.text = text;
-    self.time = text.length / 5;
-    self.widthContent = [self.labelFront sizeThatFits:CGSizeZero].width;
-    self.labelFront.frame = CGRectMake(0, 0, self.widthContent, self.height);
-    if (self.widthContent > self.width) {
-        self.labelBack.frame = CGRectMake(self.widthContent, 0, self.widthContent, self.height);
-    }
-
-    [self startAnimation];
-}
-
-- (void)setTime:(NSTimeInterval)time
-{
-    _time = time;
-}
-
-
 - (void)setFont:(UIFont *)font
 {
     _font = font;
@@ -124,9 +114,23 @@ NS_ASSUME_NONNULL_END
     self.labelBack.textColor = colorText;
 }
 
+- (void)setText:(NSString *)text
+{
+    _text = text;
+    [self reloadFrame];
+    [self startAnimation];
+}
+
+- (void)setTime:(NSTimeInterval)time
+{
+    _time = time;
+    [self startAnimation];
+}
+
 - (void)setStart:(BOOL)start
 {
     _start = start;
+    [self reloadFrame];
     [self startAnimation];
 }
 

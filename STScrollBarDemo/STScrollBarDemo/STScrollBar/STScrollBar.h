@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface STScrollBar : UIView
 /** 1.标题,必须设在frame之后，如果重新设置字体的属性，请将标题内容在之后设置*/
 @property (nonatomic, strong) NSString *text;
-/** 2.滚动一圈的时间, 默认是标题长度的五分之一 */
+/** 2.滚动一圈的时间, 默认是标题长度的五分之一, 如果重新设置，在设置完标题text属性之后*/
 @property (nonatomic, assign) NSTimeInterval time;
 /** 3.字体,默认是[UIFont systemFontOfSize:17] */
 @property (nonatomic, strong) UIFont *font;
